@@ -1,6 +1,6 @@
 package domain.repository;
 
-public interface ExchangableItem {
+public interface IExchangableItem {
 	String name();
 	String simbol();
 }

@@ -1,7 +1,7 @@
 package domain.model;
 
-import domain.repository.ExchangableItem;
+import domain.repository.IExchangableItem;
 
-public record Temperature(String simbol, String name) implements ExchangableItem{
+public record Temperature(String simbol, String name) implements IExchangableItem{
 
 }

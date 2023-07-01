@@ -1,5 +1,6 @@
 	package presentation.currency_selection.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -7,23 +8,23 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import data.repository.TemperatureRepositoryImpl;
-import domain.repository.ExchangableItem;
-import domain.repository.ItemRepository;
-import presentation.currency_selection.view_model.CurrencySelectionViewModel;
+import data.repository.CurrencyRepositoryImpl;
+import domain.repository.IExchangableItem;
+import domain.repository.IItemRepository;
+
 
 
 public class CurrencySelectionScreen {
-	private CurrencySelectionViewModel viewModel = new CurrencySelectionViewModel();	
-	private ItemRepository repository = new TemperatureRepositoryImpl();
-	
-	
-	public void showSelectionDialog(){
-		List<ExchangableItem> items = repository.getAllItems();
+
+	private IItemRepository repository = CurrencyRepositoryImpl.INSTANCE;
+
+	public List<String> showSelectionDialog(){
+		List<IExchangableItem> items = repository.getAllItems();
+        List<String> selectedValues = new ArrayList<>();
 		JComboBox<String> sourceItemComboBox = new JComboBox<>();
 		JComboBox<String> targetItemComboBox = new JComboBox<>();
-		
-		for (ExchangableItem item : items) {
+        
+		for (IExchangableItem item : items) {
 			sourceItemComboBox.addItem(item.name());
 			targetItemComboBox.addItem(item.name());
 		}
@@ -52,14 +53,13 @@ public class CurrencySelectionScreen {
                 null
         );
         
-     // Check if the OK button was clicked
+        // Check if the OK button was clicked
         if (result == JOptionPane.OK_OPTION) {
-            // Get the selected items from the dropdown menus
-            String sourceCurrency = (String) sourceItemComboBox.getSelectedItem();
-            String targetCurrency = (String) targetItemComboBox.getSelectedItem();
-
-            // Perform the currency conversion with the selected items
-            viewModel.handleSelectedValue(sourceCurrency, targetCurrency);
+        	selectedValues.add((String) sourceItemComboBox.getSelectedItem());
+            selectedValues.add((String) targetItemComboBox.getSelectedItem());
+            
         }
+        
+        return selectedValues;
 	}
 }

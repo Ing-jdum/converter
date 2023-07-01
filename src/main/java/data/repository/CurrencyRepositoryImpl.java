@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.model.Currency;
-import domain.repository.ExchangableItem;
-import domain.repository.ItemRepository;
+import domain.repository.IExchangableItem;
+import domain.repository.IItemRepository;
 
-public enum CurrencyRepositoryImpl implements ItemRepository {
+public enum CurrencyRepositoryImpl implements IItemRepository {
 	INSTANCE;
 	
-    private List<ExchangableItem> currencies;
+    private List<IExchangableItem> currencies;
     String title = "Currency conversion";
     
     private CurrencyRepositoryImpl() {
@@ -25,12 +25,12 @@ public enum CurrencyRepositoryImpl implements ItemRepository {
     }
 
     @Override
-    public List<ExchangableItem> getAllItems() {
+    public List<IExchangableItem> getAllItems() {
         return currencies;
     }
 
     @Override
-    public ExchangableItem getItemByName(String name) {
+    public IExchangableItem getItemByName(String name) {
         return currencies.stream()
                 .filter(currency -> currency.simbol().equalsIgnoreCase(name))
                 .findFirst()

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.model.Temperature;
-import domain.repository.ExchangableItem;
-import domain.repository.ItemRepository;
+import domain.repository.IExchangableItem;
+import domain.repository.IItemRepository;
 
-public enum TemperatureRepositoryImpl implements ItemRepository{
+public enum TemperatureRepositoryImpl implements IItemRepository{
 	INSTANCE;
 	
-	private List<ExchangableItem> temperatures;
+	private List<IExchangableItem> temperatures;
 	String title = "Temperature conversion";
 	
 	private TemperatureRepositoryImpl() {
@@ -22,12 +22,12 @@ public enum TemperatureRepositoryImpl implements ItemRepository{
     }
 	
 	@Override
-	public List<ExchangableItem> getAllItems() {
+	public List<IExchangableItem> getAllItems() {
 		return temperatures;
 	}
 
 	@Override
-	public ExchangableItem getItemByName(String name) {
+	public IExchangableItem getItemByName(String name) {
 		return temperatures.stream()
                 .filter(temp -> temp.simbol().equalsIgnoreCase(name))
                 .findFirst()
