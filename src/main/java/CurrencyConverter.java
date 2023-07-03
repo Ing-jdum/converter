@@ -2,7 +2,7 @@ import java.util.List;
 
 import data.repository.CurrencyRepositoryImpl;
 import domain.use_case.CurrencyConverterUtil;
-import presentation.currency_selection.view.CurrencySelectionScreen;
+import presentation.selection.view.SelectionScreen;
 import presentation.value_to_convert.view.InputValueScreen;
 
 public class CurrencyConverter {
@@ -12,7 +12,7 @@ public class CurrencyConverter {
 		Double inputValue;
 		Double result;
 		
-		CurrencySelectionScreen view = new CurrencySelectionScreen(CurrencyRepositoryImpl.INSTANCE);
+		SelectionScreen view = new SelectionScreen(CurrencyRepositoryImpl.INSTANCE);
         selectedValues = view.showSelectionDialog();
         System.out.println(selectedValues.toString());
         InputValueScreen view2 = new InputValueScreen();

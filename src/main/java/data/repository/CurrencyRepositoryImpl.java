@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import domain.model.Currency;
-import domain.repository.IExchangableItem;
+import domain.model.IExchangableItem;
+import domain.model.currency.Currency;
+import domain.repository.ICurrencyRepository;
 import domain.repository.IItemRepository;
 
-public enum CurrencyRepositoryImpl implements IItemRepository {
+public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyRepository {
 	INSTANCE;
 	
     private List<IExchangableItem> currencies;
@@ -32,9 +33,10 @@ public enum CurrencyRepositoryImpl implements IItemRepository {
     }
 
     @Override
-    public Optional<IExchangableItem> getItemByName(String name) {
+    public Optional<Currency> getItemByName(String name) {
         return currencies.stream()
                 .filter(currency -> currency.name().equalsIgnoreCase(name))
+                .map(Currency.class::cast)
                 .findFirst();
     }
 

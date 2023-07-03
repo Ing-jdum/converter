@@ -1,4 +1,4 @@
-package domain.repository;
+package domain.model;
 
 public interface IExchangableItem {
 	String name();

@@ -1,4 +1,4 @@
-	package presentation.currency_selection.view;
+	package presentation.selection.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import data.repository.CurrencyRepositoryImpl;
-import domain.repository.IExchangableItem;
+import domain.model.IExchangableItem;
 import domain.repository.IItemRepository;
 
 
 
-public class CurrencySelectionScreen {
+public class SelectionScreen {
 	
 	private IItemRepository repository;
 	
-	public CurrencySelectionScreen(IItemRepository repository) {
+	public SelectionScreen(IItemRepository repository) {
 		this.repository = repository;
 	}
 

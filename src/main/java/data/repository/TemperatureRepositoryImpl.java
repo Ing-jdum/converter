@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import domain.model.IExchangableItem;
 import domain.model.temperature.Temperature;
 import domain.model.temperature.units.Celsius;
+import domain.model.temperature.units.ETemperatureUnits;
 import domain.model.temperature.units.Fahrenheit;
 import domain.model.temperature.units.Kelvin;
-import domain.repository.IExchangableItem;
 import domain.repository.IItemRepository;
+import domain.repository.ITemperatureRepository;
 
-public enum TemperatureRepositoryImpl implements IItemRepository{
+public enum TemperatureRepositoryImpl implements IItemRepository, ITemperatureRepository{
 	INSTANCE;
 	
 	private List<IExchangableItem> temperatures;
@@ -20,9 +22,9 @@ public enum TemperatureRepositoryImpl implements IItemRepository{
 	private TemperatureRepositoryImpl() {
         temperatures = new ArrayList<>();
         // Add temperatures to the list
-        temperatures.add(new Temperature("F", "Farenheit", new Fahrenheit()));
-        temperatures.add(new Temperature("K", "Kelvin", new Kelvin()));
-        temperatures.add(new Temperature("C", "Celsius", new Celsius()));
+        temperatures.add(new Temperature("C", ETemperatureUnits.CELSIUS.getName(), new Celsius()));
+        temperatures.add(new Temperature("F", ETemperatureUnits.FAHRENHEIT.getName(), new Fahrenheit()));
+        temperatures.add(new Temperature("K", ETemperatureUnits.KELVIN.getName(), new Kelvin()));
     }
 	
 	@Override
@@ -31,9 +33,10 @@ public enum TemperatureRepositoryImpl implements IItemRepository{
 	}
 
 	@Override
-	public Optional<IExchangableItem> getItemByName(String name) {
+	public Optional<Temperature> getItemByName(String name) {
 		return temperatures.stream()
                 .filter(temp -> temp.simbol().equalsIgnoreCase(name))
+                .map(Temperature.class::cast)
                 .findFirst();
 	}
 

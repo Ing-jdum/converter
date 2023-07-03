@@ -1,8 +1,6 @@
 package domain.use_case;
 
 import domain.model.temperature.ITemperatureUnit;
-import domain.model.temperature.units.ETemperatureUnits;
-
 
 public class TemperatureConverterUtil {
 	
