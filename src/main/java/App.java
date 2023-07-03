@@ -5,7 +5,7 @@ import domain.use_case.CurrencyConverterUtil;
 import presentation.selection.view.SelectionScreen;
 import presentation.value_to_convert.view.InputValueScreen;
 
-public class CurrencyConverter {
+public class App {
 
 	public static void main(String[] args) {
 		List<String> selectedValues;
