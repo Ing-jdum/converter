@@ -32,6 +32,11 @@ public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyReposito
         return currencies;
     }
 
+	@Override
+	public String getTitle() {
+		return title;
+	}
+	
     @Override
     public Optional<Currency> getItemByName(String name) {
         return currencies.stream()
@@ -39,11 +44,6 @@ public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyReposito
                 .map(Currency.class::cast)
                 .findFirst();
     }
-
-	@Override
-	public String getTitle() {
-		return title;
-	}
 }
 
 

@@ -1,16 +1,8 @@
 package domain.model.temperature.units;
 
-import domain.model.temperature.ITemperatureUnit;
-
 public class Fahrenheit implements ITemperatureUnit{
-	
-	private double temperature;
-	
+		
 	public Fahrenheit() {}
-	
-	public Fahrenheit(double temperature) {
-		this.temperature = temperature;
-	}
 	
 	@Override
     public ETemperatureUnits getUnit() {
@@ -18,23 +10,18 @@ public class Fahrenheit implements ITemperatureUnit{
     }
 
     @Override
-    public double convertToCelsius() {
+    public double convertToCelsius(double temperature) {
         return (temperature - 32) * 5 / 9;
     }
 
     @Override
-    public double convertToFahrenheit() {
+    public double convertToFahrenheit(double temperature) {
         return temperature;
     }
 
     @Override
-    public double convertToKelvin() {
+    public double convertToKelvin(double temperature) {
         return (temperature + 459.67) * 5 / 9;
     }
-
-	@Override
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
-	}
     
 }

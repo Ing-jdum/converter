@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import domain.model.temperature.Temperature;
 
-public interface ITemperatureRepository {
+public interface ITemperatureUnitRepository {
 	Optional<Temperature> getItemByName(String name);
 
 }
