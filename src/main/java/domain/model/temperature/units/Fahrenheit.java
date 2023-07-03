@@ -6,13 +6,15 @@ public class Fahrenheit implements ITemperatureUnit{
 	
 	private double temperature;
 	
+	public Fahrenheit() {}
+	
 	public Fahrenheit(double temperature) {
 		this.temperature = temperature;
 	}
 	
 	@Override
-    public String getName() {
-        return "Fahrenheit";
+    public ETemperatureUnits getUnit() {
+        return ETemperatureUnits.FAHRENHEIT;
     }
 
     @Override
@@ -29,4 +31,10 @@ public class Fahrenheit implements ITemperatureUnit{
     public double convertToKelvin() {
         return (temperature + 459.67) * 5 / 9;
     }
+
+	@Override
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
+    
 }

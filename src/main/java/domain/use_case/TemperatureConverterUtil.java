@@ -1,31 +1,27 @@
 package domain.use_case;
 
+import domain.model.temperature.ITemperatureUnit;
+import domain.model.temperature.units.ETemperatureUnits;
+
+
 public class TemperatureConverterUtil {
 	
-	
-	public static double fahrenheitToCelsius(double fahrenheit) {
-        return (fahrenheit - 32) * 5 / 9;
-    }
-    
-    public static double celsiusToFahrenheit(double celsius) {
-        return (celsius * 9 / 5) + 32;
-    }
-    
-    public static double kelvinToCelsius(double kelvin) {
-        return kelvin - 273.15;
-    }
-    
-    public static double celsiusToKelvin(double celsius) {
-        return celsius + 273.15;
-    }
-    
-    public static double kelvinToFahrenheit(double kelvin) {
-        double celsius = kelvinToCelsius(kelvin);
-        return celsiusToFahrenheit(celsius);
-    }
-    
-    public static double fahrenheitToKelvin(double fahrenheit) {
-        double celsius = fahrenheitToCelsius(fahrenheit);
-        return celsiusToKelvin(celsius);
-    }
+	public double convertTemperature(ITemperatureUnit sourceTemperature, ITemperatureUnit targetTemperature) {
+		double convertedTemperature = 0.0;
+		switch(targetTemperature.getUnit()){
+	        case CELSIUS:
+	            convertedTemperature = sourceTemperature.convertToCelsius();
+	            break;
+	        case FAHRENHEIT:
+	            convertedTemperature = sourceTemperature.convertToFahrenheit();
+	            break;
+	        case KELVIN:
+	            convertedTemperature = sourceTemperature.convertToKelvin();
+	            break;
+	        default:
+	            System.out.println("Invalid temperature unit");
+	            break;
+	    }
+		return convertedTemperature;
+	}
 }

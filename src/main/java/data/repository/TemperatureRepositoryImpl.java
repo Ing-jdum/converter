@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import domain.model.temperature.Temperature;
+import domain.model.temperature.units.Celsius;
+import domain.model.temperature.units.Fahrenheit;
+import domain.model.temperature.units.Kelvin;
 import domain.repository.IExchangableItem;
 import domain.repository.IItemRepository;
 
@@ -16,9 +20,9 @@ public enum TemperatureRepositoryImpl implements IItemRepository{
 	private TemperatureRepositoryImpl() {
         temperatures = new ArrayList<>();
         // Add temperatures to the list
-        temperatures.add(new Temperature("F", "Farenheit"));
-        temperatures.add(new Temperature("K", "Kelvin"));
-        temperatures.add(new Temperature("C", "Celsius"));
+        temperatures.add(new Temperature("F", "Farenheit", new Fahrenheit()));
+        temperatures.add(new Temperature("K", "Kelvin", new Kelvin()));
+        temperatures.add(new Temperature("C", "Celsius", new Celsius()));
     }
 	
 	@Override

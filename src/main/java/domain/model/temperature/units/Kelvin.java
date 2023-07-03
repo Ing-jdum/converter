@@ -6,15 +6,16 @@ public class Kelvin implements ITemperatureUnit {
 	
 	private double temperature;
 	
+	public Kelvin() {}
 	
 	public Kelvin(double temperature) {
 		this.temperature = temperature;
 	}
 	
 	
-    @Override
-    public String getName() {
-        return "Kelvin";
+	@Override
+    public ETemperatureUnits getUnit() {
+        return ETemperatureUnits.KELVIN;
     }
 
     @Override
@@ -31,5 +32,10 @@ public class Kelvin implements ITemperatureUnit {
     public double convertToKelvin() {
         return this.temperature;
     }
+
+	@Override
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
 }
 
