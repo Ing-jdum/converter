@@ -2,6 +2,7 @@ package data.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import domain.model.Currency;
 import domain.repository.IExchangableItem;
@@ -23,18 +24,18 @@ public enum CurrencyRepositoryImpl implements IItemRepository {
         currencies.add(new Currency("JPY", "Japanese Yen", 2.32));
         currencies.add(new Currency("KRW", "South Korean Won", 24.75));
     }
-
+    
+    
     @Override
     public List<IExchangableItem> getAllItems() {
         return currencies;
     }
 
     @Override
-    public IExchangableItem getItemByName(String name) {
+    public Optional<IExchangableItem> getItemByName(String name) {
         return currencies.stream()
-                .filter(currency -> currency.simbol().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+                .filter(currency -> currency.name().equalsIgnoreCase(name))
+                .findFirst();
     }
 
 	@Override

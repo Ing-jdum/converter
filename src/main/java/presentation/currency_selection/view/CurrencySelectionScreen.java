@@ -15,8 +15,12 @@ import domain.repository.IItemRepository;
 
 
 public class CurrencySelectionScreen {
-
-	private IItemRepository repository = CurrencyRepositoryImpl.INSTANCE;
+	
+	private IItemRepository repository;
+	
+	public CurrencySelectionScreen(IItemRepository repository) {
+		this.repository = repository;
+	}
 
 	public List<String> showSelectionDialog(){
 		List<IExchangableItem> items = repository.getAllItems();

@@ -2,8 +2,8 @@ package data.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import domain.model.Temperature;
 import domain.repository.IExchangableItem;
 import domain.repository.IItemRepository;
 
@@ -18,7 +18,7 @@ public enum TemperatureRepositoryImpl implements IItemRepository{
         // Add temperatures to the list
         temperatures.add(new Temperature("F", "Farenheit"));
         temperatures.add(new Temperature("K", "Kelvin"));
-        temperatures.add(new Temperature("C", "Celcius"));
+        temperatures.add(new Temperature("C", "Celsius"));
     }
 	
 	@Override
@@ -27,11 +27,10 @@ public enum TemperatureRepositoryImpl implements IItemRepository{
 	}
 
 	@Override
-	public IExchangableItem getItemByName(String name) {
+	public Optional<IExchangableItem> getItemByName(String name) {
 		return temperatures.stream()
                 .filter(temp -> temp.simbol().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
 	}
 
 	@Override
