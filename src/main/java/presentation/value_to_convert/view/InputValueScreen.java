@@ -2,6 +2,7 @@ package presentation.value_to_convert.view;
 
 import java.awt.FlowLayout;
 
+import org.apache.commons.lang3.StringUtils;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,16 +30,16 @@ public class InputValueScreen {
     }
 
     public String showNumberInputDialog() {
-        String valueText = null;
+        String valueText = "";
 
         while (true) {
             valueText = JOptionPane.showInputDialog(panel, "Enter a number:");
-            if(valueText == null || valueText.matches("^-?\\d*\\.?\\d+$")) {
+            if(StringUtils.isEmpty(valueText) || valueText.matches("^-?\\d*\\.?\\d+$")) {
             	break;
             } 
             else{
-                JOptionPane.showMessageDialog(panel, "Please enter a valid number.", 
-                		"Invalid Input", JOptionPane.WARNING_MESSAGE);
+            	JOptionPane.showMessageDialog(panel, "Please enter a valid number.", 
+                		"Invalid Input", JOptionPane.WARNING_MESSAGE);;
             } 	
         }
         return valueText;

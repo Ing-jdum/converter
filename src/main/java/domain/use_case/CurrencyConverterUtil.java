@@ -23,15 +23,15 @@ public class CurrencyConverterUtil {
         		CurrencyRepositoryImpl.INSTANCE.getItemByName(sourceCurrency);
         Optional<Currency> targetItem = 
         		CurrencyRepositoryImpl.INSTANCE.getItemByName(targetCurrency);
-        
+        double result = 0;
         // Perform the currency conversion calculation
         if(sourceItem.isPresent() && targetItem.isPresent()) {
         	Currency sourceCurr = sourceItem.get();
         	Currency targetCurr = targetItem.get();
-        	return convertCurrency(sourceCurr, targetCurr, amount);
+        	result = convertCurrency(sourceCurr, targetCurr, amount);
         }
         
-		return 0;
+		return result;
     }
 
 }

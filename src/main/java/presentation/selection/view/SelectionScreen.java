@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import data.repository.CurrencyRepositoryImpl;
 import domain.model.IExchangableItem;
 import domain.repository.IItemRepository;
 

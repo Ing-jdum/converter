@@ -1,8 +1,6 @@
 package domain.model.temperature.units;
 
 public class Celsius implements ITemperatureUnit {
-
-    public Celsius() {}
     
 
     @Override

@@ -40,7 +40,7 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	@Override
 	public Optional<Temperature> getItemByName(String name) {
 		return temperatures.stream()
-                .filter(temp -> temp.simbol().equalsIgnoreCase(name))
+                .filter(temp -> temp.name().equalsIgnoreCase(name))
                 .map(Temperature.class::cast)
                 .findFirst();
 	}

@@ -1,9 +1,7 @@
 package domain.model.temperature.units;
 
 public class Kelvin implements ITemperatureUnit {
-	
-	public Kelvin() {}
-	
+		
 	
 	@Override
     public ETemperatureUnits getUnit() {

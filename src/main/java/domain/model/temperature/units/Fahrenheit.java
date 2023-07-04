@@ -2,7 +2,6 @@ package domain.model.temperature.units;
 
 public class Fahrenheit implements ITemperatureUnit{
 		
-	public Fahrenheit() {}
 	
 	@Override
     public ETemperatureUnits getUnit() {
