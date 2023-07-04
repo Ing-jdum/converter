@@ -2,9 +2,7 @@ package domain.use_case;
 
 import java.util.Optional;
 
-import data.repository.CurrencyRepositoryImpl;
 import data.repository.TemperatureUnitRepositoryImpl;
-import domain.model.currency.Currency;
 import domain.model.temperature.units.ETemperatureUnits;
 
 public class TemperatureConverterUtil {
