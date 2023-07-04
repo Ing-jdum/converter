@@ -3,7 +3,6 @@ package domain.use_case;
 import java.util.Optional;
 
 import data.repository.CurrencyRepositoryImpl;
-import domain.model.IExchangableItem;
 import domain.model.currency.Currency;
 
 public class CurrencyConverterUtil {
