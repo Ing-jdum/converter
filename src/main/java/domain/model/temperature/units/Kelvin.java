@@ -1,5 +1,6 @@
 package domain.model.temperature.units;
 
+import data.repository.temperature.ETemperatureUnits;
 import domain.model.IExchangableItem;
 
 public class Kelvin implements ITemperatureUnit, IExchangableItem {
@@ -28,6 +29,11 @@ public class Kelvin implements ITemperatureUnit, IExchangableItem {
 	public String simbol() {
 		return "K";
 	}
-
+	
+	@Override
+	public ETemperatureUnits getUnit() {
+		return ETemperatureUnits.KELVIN;
+	}
+	
 }
 

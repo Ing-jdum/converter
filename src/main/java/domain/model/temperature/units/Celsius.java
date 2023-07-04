@@ -1,5 +1,6 @@
 package domain.model.temperature.units;
 
+import data.repository.temperature.ETemperatureUnits;
 import domain.model.IExchangableItem;
 
 public class Celsius implements ITemperatureUnit, IExchangableItem {
@@ -27,6 +28,11 @@ public class Celsius implements ITemperatureUnit, IExchangableItem {
 	@Override
 	public String simbol() {
 		return "C";
+	}
+
+	@Override
+	public ETemperatureUnits getUnit() {
+		return ETemperatureUnits.CELSIUS;
 	}
 }
 

@@ -2,17 +2,16 @@ package data.repository.temperature;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import domain.model.IExchangableItem;
+import domain.model.temperature.units.ITemperatureUnit;
 import domain.repository.IItemRepository;
 import domain.repository.ITemperatureUnitRepository;
 
 public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatureUnitRepository{
 	INSTANCE;
 	
-	ETemperatureUnits[] units = ETemperatureUnits.values();
 	private List<IExchangableItem> temperatures = Stream.of(ETemperatureUnits.values())
 			.map(enumValue -> (IExchangableItem) enumValue.getUnit())
 			.toList();
@@ -32,10 +31,10 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	}
 	
 	@Override
-	public Optional<ETemperatureUnits> getItemByName(String name) {
+	public Optional<ITemperatureUnit> getItemByName(String name) {
 		return temperatures.stream()
                 .filter(temp -> temp.description().equalsIgnoreCase(name))
-                .map(ETemperatureUnits.class::cast)
+                .map(ITemperatureUnit.class::cast)
                 .findFirst();
 	}
 
