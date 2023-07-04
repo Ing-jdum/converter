@@ -2,8 +2,8 @@ package domain.use_case;
 
 import java.util.Optional;
 
-import data.repository.TemperatureUnitRepositoryImpl;
-import domain.model.temperature.units.ETemperatureUnits;
+import data.repository.temperature.ETemperatureUnits;
+import data.repository.temperature.TemperatureUnitRepositoryImpl;
 
 public class TemperatureConverterUtil {
 	

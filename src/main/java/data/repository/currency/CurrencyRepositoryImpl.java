@@ -1,4 +1,4 @@
-package data.repository;
+	package data.repository.currency;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package data.repository;
+package data.repository.temperature;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import domain.model.IExchangableItem;
-import domain.model.temperature.units.ETemperatureUnits;
 import domain.repository.IItemRepository;
 import domain.repository.ITemperatureUnitRepository;
 
@@ -13,7 +13,10 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	INSTANCE;
 	
 	ETemperatureUnits[] units = ETemperatureUnits.values();
-	private List<IExchangableItem> temperatures = Arrays.asList(units);
+	private List<IExchangableItem> temperatures = Stream.of(ETemperatureUnits.values())
+			.map(enumValue -> (IExchangableItem) enumValue.getUnit())
+			.toList();
+			
 	String title = "Temperature conversion";
 	
 	private TemperatureUnitRepositoryImpl() {}

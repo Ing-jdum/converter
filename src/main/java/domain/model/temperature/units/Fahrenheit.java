@@ -1,6 +1,8 @@
 package domain.model.temperature.units;
 
-public class Fahrenheit implements ITemperatureUnit{
+import domain.model.IExchangableItem;
+
+public class Fahrenheit implements ITemperatureUnit, IExchangableItem{
 		
     @Override
     public double convertToCelsius(double temperature) {
@@ -16,5 +18,15 @@ public class Fahrenheit implements ITemperatureUnit{
     public double convertToKelvin(double temperature) {
         return (temperature + 459.67) * 5 / 9;
     }
-    
+
+	@Override
+	public String description() {
+		return "Fahrenheit";
+	}
+
+	@Override
+	public String simbol() {
+		return "F";
+	}
+
 }

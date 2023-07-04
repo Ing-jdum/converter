@@ -1,6 +1,8 @@
 package domain.model.temperature.units;
 
-public class Kelvin implements ITemperatureUnit {
+import domain.model.IExchangableItem;
+
+public class Kelvin implements ITemperatureUnit, IExchangableItem {
 
     @Override
     public double convertToCelsius(double temperature) {
@@ -16,5 +18,16 @@ public class Kelvin implements ITemperatureUnit {
     public double convertToKelvin(double temperature) {
         return temperature;
     }
+
+	@Override
+	public String description() {
+		return "Kelvin";
+	}
+
+	@Override
+	public String simbol() {
+		return "K";
+	}
+
 }
 
