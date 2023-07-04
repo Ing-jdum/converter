@@ -1,31 +1,22 @@
 package data.repository;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import domain.model.IExchangableItem;
-import domain.model.temperature.Temperature;
-import domain.model.temperature.units.Celsius;
 import domain.model.temperature.units.ETemperatureUnits;
-import domain.model.temperature.units.Fahrenheit;
-import domain.model.temperature.units.Kelvin;
 import domain.repository.IItemRepository;
 import domain.repository.ITemperatureUnitRepository;
 
 public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatureUnitRepository{
 	INSTANCE;
 	
-	private List<IExchangableItem> temperatures;
+	ETemperatureUnits[] units = ETemperatureUnits.values();
+	private List<IExchangableItem> temperatures = Arrays.asList(units);
 	String title = "Temperature conversion";
 	
-	private TemperatureUnitRepositoryImpl() {
-        temperatures = new ArrayList<>();
-        // Add temperatures to the list
-        temperatures.add(new Temperature("C", ETemperatureUnits.CELSIUS.getName(), new Celsius()));
-        temperatures.add(new Temperature("F", ETemperatureUnits.FAHRENHEIT.getName(), new Fahrenheit()));
-        temperatures.add(new Temperature("K", ETemperatureUnits.KELVIN.getName(), new Kelvin()));
-    }
+	private TemperatureUnitRepositoryImpl() {}
 	
 	@Override
 	public List<IExchangableItem> getAllItems() {
@@ -38,10 +29,10 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	}
 	
 	@Override
-	public Optional<Temperature> getItemByName(String name) {
+	public Optional<ETemperatureUnits> getItemByName(String name) {
 		return temperatures.stream()
-                .filter(temp -> temp.name().equalsIgnoreCase(name))
-                .map(Temperature.class::cast)
+                .filter(temp -> temp.description().equalsIgnoreCase(name))
+                .map(ETemperatureUnits.class::cast)
                 .findFirst();
 	}
 

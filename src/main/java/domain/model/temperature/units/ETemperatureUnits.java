@@ -1,17 +1,34 @@
 package domain.model.temperature.units;
 
-public enum ETemperatureUnits {
-	CELSIUS("Celsius"),
-    FAHRENHEIT("Fahrenheit"),
-    KELVIN("Kelvin");
+import domain.model.IExchangableItem;
 
-    private final String name;
+public enum ETemperatureUnits implements IExchangableItem, IExchangableUnit{
+	CELSIUS("Celsius", "C", new Celsius()),
+    FAHRENHEIT("Fahrenheit", "F", new Fahrenheit()),
+    KELVIN("Kelvin", "K", new Kelvin());
 
-    ETemperatureUnits(String name) {
-        this.name = name;
+    private final String description;
+    private final String simbol;
+    private final ITemperatureUnit unit;
+
+    ETemperatureUnits(String description, String simbol, ITemperatureUnit unit) {
+        this.description = description;
+        this.simbol = simbol;
+        this.unit = unit;
+    }
+    
+    @Override
+    public String description() {
+        return description;
     }
 
-    public String getName() {
-        return name;
-    }
+	@Override
+	public String simbol() {
+		return simbol;
+	}
+	
+	@Override
+	public ITemperatureUnit getUnit() {
+		return unit;
+	}
 }

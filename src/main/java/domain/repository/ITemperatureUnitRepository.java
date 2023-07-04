@@ -2,9 +2,9 @@ package domain.repository;
 
 import java.util.Optional;
 
-import domain.model.temperature.Temperature;
+import domain.model.temperature.units.ETemperatureUnits;
 
 public interface ITemperatureUnitRepository {
-	Optional<Temperature> getItemByName(String name);
+	Optional<ETemperatureUnits> getItemByName(String name);
 
 }

@@ -1,12 +1,6 @@
 package domain.model.temperature.units;
 
 public class Kelvin implements ITemperatureUnit {
-		
-	
-	@Override
-    public ETemperatureUnits getUnit() {
-        return ETemperatureUnits.KELVIN;
-    }
 
     @Override
     public double convertToCelsius(double temperature) {

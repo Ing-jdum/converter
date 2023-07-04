@@ -1,12 +1,6 @@
 package domain.model.temperature.units;
 
 public class Celsius implements ITemperatureUnit {
-    
-
-    @Override
-    public ETemperatureUnits getUnit() {
-        return ETemperatureUnits.CELSIUS;
-    }
 
     @Override
     public double convertToCelsius(double temperature) {

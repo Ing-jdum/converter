@@ -40,7 +40,7 @@ public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyReposito
     @Override
     public Optional<Currency> getItemByName(String name) {
         return currencies.stream()
-                .filter(currency -> currency.name().equalsIgnoreCase(name))
+                .filter(currency -> currency.description().equalsIgnoreCase(name))
                 .map(Currency.class::cast)
                 .findFirst();
     }
