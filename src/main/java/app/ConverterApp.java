@@ -17,9 +17,9 @@ public class ConverterApp implements IConverterApp{
 	public void run(IItemRepository repository, IConvertFunction function) {
 		List<String> selectedVals = getSelectedValues(repository);
 		Optional<Double> valueToConvert = getValueToConvert();
-		valueToConvert.ifPresent(val -> {
-			showValue(convertFunction(selectedVals, val.doubleValue(), function));
-		});
+		valueToConvert.ifPresent(val -> 
+			showValue(convertFunction(selectedVals, val.doubleValue(), function))
+		);
 	}
 
 	@Override

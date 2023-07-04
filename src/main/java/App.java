@@ -4,6 +4,7 @@ import data.repository.currency.CurrencyRepositoryImpl;
 import data.repository.temperature.TemperatureUnitRepositoryImpl;
 import domain.use_case.CurrencyConverterUtil;
 import domain.use_case.TemperatureConverterUtil;
+import presentation.result.view.ResultScreen;
 
 public class App {
 
