@@ -1,7 +1,5 @@
 package domain.use_case;
 
-import java.util.Optional;
-
 import data.repository.currency.CurrencyRepositoryImpl;
 import domain.model.currency.Currency;
 

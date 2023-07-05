@@ -37,12 +37,12 @@ public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyReposito
 	 */
 	private CurrencyRepositoryImpl() {
 		currencies = new ArrayList<>();
-		currencies.add(new Currency("DOP", "Dominican Peso", 1.0));
-		currencies.add(new Currency("USD", "United States Dollar", 0.021));
-		currencies.add(new Currency("EUR", "Euro", 0.018));
-		currencies.add(new Currency("GBP", "British Pound", 0.015));
-		currencies.add(new Currency("JPY", "Japanese Yen", 2.32));
-		currencies.add(new Currency("KRW", "South Korean Won", 24.75));
+		currencies.add(new Currency("DOP", "Dominican Peso", 0.018));
+		currencies.add(new Currency("USD", "United States Dollar", 1.0));
+		currencies.add(new Currency("EUR", "Euro", 1.09));
+		currencies.add(new Currency("GBP", "British Pound", 1.27));
+		currencies.add(new Currency("JPY", "Japanese Yen", 0.0069));
+		currencies.add(new Currency("KRW", "South Korean Won", 0.00077));
 	}
 
 	/**
