@@ -25,7 +25,7 @@ public enum ETemperatureUnits implements IExchangeableItem {
 	}
 
 	@Override
-	public String simbol() {
+	public String symbol() {
 		return symbol;
 	}
 }

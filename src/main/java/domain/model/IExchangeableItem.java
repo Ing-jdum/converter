@@ -18,5 +18,5 @@ public interface IExchangeableItem {
 	 *
 	 * @return the symbol of the item as a {@code String}.
 	 */
-	String simbol();
+	String symbol();
 }

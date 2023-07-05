@@ -1,6 +1,7 @@
 package domain.repository;
 
 import java.util.List;
+
 import domain.model.IExchangeableItem;
 
 /**
@@ -8,9 +9,7 @@ import domain.model.IExchangeableItem;
  *
  * <p>
  * Provides information about items in the repository.
- *
- * @apiNote Implementing classes should provide concrete implementations of the
- *          methods defined in this interface.
+ * 
  */
 public interface IItemRepository {
 

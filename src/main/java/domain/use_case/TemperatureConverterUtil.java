@@ -1,7 +1,5 @@
 package domain.use_case;
 
-import java.util.Optional;
-
 import data.repository.temperature.ETemperatureUnits;
 import data.repository.temperature.TemperatureUnitRepositoryImpl;
 
@@ -25,7 +23,6 @@ import data.repository.temperature.TemperatureUnitRepositoryImpl;
  * 
  * @see ETemperatureUnits
  * @see TemperatureUnitRepositoryImpl
- * @throws IllegalArgumentException if the conversion is not supported
  */
 
 public class TemperatureConverterUtil {

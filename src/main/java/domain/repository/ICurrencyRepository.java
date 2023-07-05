@@ -16,8 +16,6 @@ import domain.model.currency.Currency;
  * is found, it will be wrapped in the optional; otherwise, an empty optional
  * will be returned.
  * 
- * @see Currency
- * @see CurrencyRepositoryImpl
  */
 public interface ICurrencyRepository {
 	/**

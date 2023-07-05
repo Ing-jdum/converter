@@ -10,6 +10,6 @@ import domain.model.IExchangeableItem;
  * @param description   The description or name of the currency.
  * @param exchangeValue The exchange value of the currency.
  */
-public record Currency(String simbol, String description, double exchangeValue)
+public record Currency(String symbol, String description, double exchangeValue)
 		implements IExchangeableItem, ICurrency {
 }

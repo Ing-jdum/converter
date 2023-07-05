@@ -6,8 +6,6 @@ package domain.model.currency;
  * <p>
  * Represents a currency and provides methods to retrieve exchange value.
  *
- * @apiNote Implementing classes should provide concrete implementations of the
- *          methods defined in this interface.
  */
 public interface ICurrency {
 
