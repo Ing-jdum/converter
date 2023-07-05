@@ -16,7 +16,7 @@ Converter-app is a currency and temperature converter application developed as p
 1. Clone the repository to your local machine:
 
    ```shell
-   git clone https://github.com/your-username/converter-app.git
+   git clone git@github.com:Ing-jdum/converter.git
 Open the project in your preferred IDE (e.g., IntelliJ IDEA, Eclipse).```
 
 Build the project to resolve dependencies.
