@@ -1,8 +1,8 @@
 	package data.repository.currency;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import domain.model.IExchangableItem;
 import domain.model.currency.Currency;
@@ -12,13 +12,19 @@ import domain.repository.IItemRepository;
 public enum CurrencyRepositoryImpl implements IItemRepository, ICurrencyRepository {
 	INSTANCE;
 	
-	private List<IExchangableItem> currencies = Stream.of(ECurrencies.values())
-			.map(enumValue -> (IExchangableItem) enumValue.getCurrency())
-			.toList();
-	
-    String title = "Currency conversion";
+    private String title = "Currency conversion";
+    private List<IExchangableItem> currencies;
+
     
-    private CurrencyRepositoryImpl() {}
+    private CurrencyRepositoryImpl() {
+    	currencies = new ArrayList<>();
+        currencies.add(new Currency("DOP", "Dominican Peso", 1.0));
+        currencies.add(new Currency("USD", "United States Dollar", 0.021));
+        currencies.add(new Currency("EUR", "Euro", 0.018));
+        currencies.add(new Currency("GBP", "British Pound", 0.015));
+        currencies.add(new Currency("JPY", "Japanese Yen", 2.32));
+        currencies.add(new Currency("KRW", "South Korean Won", 24.75));
+    }
     
     
     @Override

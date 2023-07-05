@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import domain.model.IExchangableItem;
-import domain.model.temperature.units.ITemperatureUnit;
 import domain.repository.IItemRepository;
 import domain.repository.ITemperatureUnitRepository;
 

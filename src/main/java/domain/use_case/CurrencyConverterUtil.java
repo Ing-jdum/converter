@@ -11,10 +11,10 @@ public class CurrencyConverterUtil {
 	
     public static double convertCurrency(Currency sourceCurrency, Currency targetCurrency, double amount) {
         double sourceRate = sourceCurrency.exchangeValue();
-        double targetItem = targetCurrency.exchangeValue();
+        double targetRate = targetCurrency.exchangeValue();
 
         // Perform the currency conversion calculation
-        return (amount / sourceRate) * targetItem;
+        return (amount / sourceRate) * targetRate;
     }
     
     public static double convertCurrency(String sourceCurrency, String targetCurrency, double amount) {

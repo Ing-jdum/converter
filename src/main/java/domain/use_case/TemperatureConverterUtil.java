@@ -4,11 +4,25 @@ import java.util.Optional;
 
 import data.repository.temperature.ETemperatureUnits;
 import data.repository.temperature.TemperatureUnitRepositoryImpl;
-import domain.model.temperature.units.ITemperatureUnit;
 
 public class TemperatureConverterUtil {
 	
 	private TemperatureConverterUtil() {}
+	
+	public static double convertTemperature(String sourceTemperature, String targetTemperature, double value) {
+		Optional<ETemperatureUnits> sourceItem = 
+        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(sourceTemperature);
+        Optional<ETemperatureUnits> targetItem = 
+        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(targetTemperature);
+        double result = 0;
+        if(sourceItem.isPresent() && targetItem.isPresent()) {
+        	ETemperatureUnits sourceTemp = sourceItem.get();
+        	ETemperatureUnits targetTemp = targetItem.get();
+            double kelvinValue = convertTemperatureToKelvin(sourceTemp, targetTemp, value);
+            result = convertTemperatureFromKelvin(sourceTemp, targetTemp, kelvinValue);
+        }
+        return result;
+	}
 	
 	public static double convertTemperatureToKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
 		double convertedTemperature = 0.0;
@@ -29,33 +43,22 @@ public class TemperatureConverterUtil {
 		return convertedTemperature;
 	}
 	
-	public static double convertTemperature(String sourceTemperature, String targetTemperature, double value) {
-		Optional<ETemperatureUnits> sourceItem = 
-        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(sourceTemperature);
-        Optional<ETemperatureUnits> targetItem = 
-        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(targetTemperature);
-        double result = 0;
-        if(sourceItem.isPresent() && targetItem.isPresent()) {
-        	ETemperatureUnits sourceTemp = sourceItem.get();
-        	ETemperatureUnits targetTemp = targetItem.get();
-            double kelvinValue = convertTemperatureToKelvin(sourceTemp, targetTemp, value);
-    	
-        	switch(targetTemp){
-		        case CELSIUS:
-		            result = kelvinToCelsius(kelvinValue);
-		            break;
-		        case FAHRENHEIT:
-		        	result = kelvinToFahrenheit(kelvinValue);
-		            break;
-		        case KELVIN:
-		        	result = kelvinValue;
-		            break;
-		        default:
-		            System.out.println("Invalid temperature unit");
-		            break;
-	        }
-        }
-        return result;
+	public static double convertTemperatureFromKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
+		double result = convertTemperatureToKelvin(sourceTemperature, targetTemperature, value);
+		switch(targetTemperature){
+	        case CELSIUS:
+	            result = kelvinToCelsius(result);
+	            break;
+	        case FAHRENHEIT:
+	        	result = kelvinToFahrenheit(result);
+	            break;
+	        case KELVIN:
+	            break;
+	        default:
+	            System.out.println("Invalid temperature unit");
+	            break;
+		}
+		return result;
 	}
 	
 	public static double celsiusToFahrenheit(double celsius) {
