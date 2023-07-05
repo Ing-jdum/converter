@@ -12,8 +12,8 @@ public class App {
 		ConverterApp converterApp = new ConverterApp();
 		IConvertFunction function = TemperatureConverterUtil::convertTemperature;
         converterApp.run(TemperatureUnitRepositoryImpl.INSTANCE, function);
-        IConvertFunction functionC = CurrencyConverterUtil::convertCurrency;
-        converterApp.run(CurrencyRepositoryImpl.INSTANCE, functionC);
+//        IConvertFunction functionC = CurrencyConverterUtil::convertCurrency;
+//        converterApp.run(CurrencyRepositoryImpl.INSTANCE, functionC);
     }
 
 }

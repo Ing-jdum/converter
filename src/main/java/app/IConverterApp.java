@@ -11,4 +11,6 @@ public interface IConverterApp {
 	public Optional<Double> getValueToConvert();
 	public double convertFunction(List<String> selectedValues, double inputValue, IConvertFunction function);
 	public void showValue(Double value);
+	public boolean showContinueConversion();
+	public void showProgramEnded();
 }

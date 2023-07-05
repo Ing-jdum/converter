@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import domain.repository.IItemRepository;
 import domain.use_case.TemperatureConverterUtil;
+import presentation.continue_converting.view.ContinueConversionScreen;
+import presentation.end_program.view.EndProgramScreen;
 import presentation.result.view.ResultScreen;
 import presentation.selection.view.SelectionScreen;
 import presentation.value_to_convert.view.InputValueScreen;
@@ -14,12 +16,18 @@ import presentation.value_to_convert.view.InputValueScreen;
 public class ConverterApp implements IConverterApp{
 
 	@Override
-	public void run(IItemRepository repository, IConvertFunction function) {
-		List<String> selectedVals = getSelectedValues(repository);
-		Optional<Double> valueToConvert = getValueToConvert();
-		valueToConvert.ifPresent(val -> 
-			showValue(convertFunction(selectedVals, val.doubleValue(), function))
-		);
+	public void run(IItemRepository repository, IConvertFunction function) { 
+		Optional<Double> valueToConvert; 
+		boolean keepConverting = Boolean.TRUE;
+		while(keepConverting) {
+			List<String> selectedVals = getSelectedValues(repository);
+			valueToConvert = getValueToConvert();
+			valueToConvert.ifPresent(val -> 
+				showValue(convertFunction(selectedVals, val.doubleValue(), function))
+			);
+			keepConverting = showContinueConversion();
+		}
+		showProgramEnded();
 	}
 
 	@Override
@@ -46,6 +54,16 @@ public class ConverterApp implements IConverterApp{
 	public double convertFunction(List<String> selectedValues, double inputValue, IConvertFunction function) {
 		return	function.convertValue(selectedValues.get(0), 
         		selectedValues.get(1), inputValue);
+	}
+
+	@Override
+	public boolean showContinueConversion() {
+		return ContinueConversionScreen.showContinueConversion();
+	}
+
+	@Override
+	public void showProgramEnded() {
+		EndProgramScreen.showMessage("Program ended");
 	}
 
 }

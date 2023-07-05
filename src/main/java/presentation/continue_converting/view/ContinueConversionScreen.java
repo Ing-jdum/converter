@@ -2,9 +2,9 @@ package presentation.continue_converting.view;
 
 import javax.swing.JOptionPane;
 
-public class ContinueConversion {
+public class ContinueConversionScreen {
 	
-	private ContinueConversion() {}
+	private ContinueConversionScreen() {}
 	
 	public static boolean showContinueConversion() {
 		int choice = JOptionPane.showOptionDialog(

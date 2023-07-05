@@ -25,26 +25,25 @@ public class TemperatureConverterUtil {
 	}
 	
 	public static double convertTemperatureToKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
-		double convertedTemperature = 0.0;
+		double result = 0.0;
 		switch(sourceTemperature){
 	        case CELSIUS:
-	            convertedTemperature = celsiusToKelvin(value);
+	        	result = celsiusToKelvin(value);
 	            break;
 	        case FAHRENHEIT:
-	            convertedTemperature = fahrenheitToKelvin(value);
+	        	result = fahrenheitToKelvin(value);
 	            break;
 	        case KELVIN:
-	            convertedTemperature = value;
+	        	result = value;
 	            break;
 	        default:
-	            System.out.println("Invalid temperature unit");
 	            break;
 	    }
-		return convertedTemperature;
+		return result;
 	}
 	
 	public static double convertTemperatureFromKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
-		double result = convertTemperatureToKelvin(sourceTemperature, targetTemperature, value);
+		double result = value;
 		switch(targetTemperature){
 	        case CELSIUS:
 	            result = kelvinToCelsius(result);
@@ -55,7 +54,6 @@ public class TemperatureConverterUtil {
 	        case KELVIN:
 	            break;
 	        default:
-	            System.out.println("Invalid temperature unit");
 	            break;
 		}
 		return result;
