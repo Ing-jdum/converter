@@ -13,7 +13,7 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	INSTANCE;
 	
 	private List<IExchangableItem> temperatures = Stream.of(ETemperatureUnits.values())
-			.map(enumValue -> (IExchangableItem) enumValue.getUnit())
+			.map(IExchangableItem.class::cast)
 			.toList();
 			
 	String title = "Temperature conversion";
@@ -31,11 +31,10 @@ public enum TemperatureUnitRepositoryImpl implements IItemRepository, ITemperatu
 	}
 	
 	@Override
-	public Optional<ITemperatureUnit> getItemByName(String name) {
-		return temperatures.stream()
-                .filter(temp -> temp.description().equalsIgnoreCase(name))
-                .map(ITemperatureUnit.class::cast)
-                .findFirst();
+	public Optional<ETemperatureUnits> getTemperatureUnitByDescription(String description) {
+	    return Stream.of(ETemperatureUnits.values())
+	            .filter(unit -> unit.description().equalsIgnoreCase(description))
+	            .findFirst();
 	}
 
 }
