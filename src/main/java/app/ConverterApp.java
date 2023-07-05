@@ -14,24 +14,29 @@ import presentation.selection.view.SelectionScreen;
 import presentation.value_to_convert.view.InputValueScreen;
 
 /**
- * Represents a converter application.
- * This class implements the {@link IConverterApp} interface and provides the functionality
- * to run the converter application by interacting with the user through various screens.
+ * Represents a converter application. This class implements the
+ * {@link IConverterApp} interface and provides the functionality to run the
+ * converter application by interacting with the user through various screens.
  *
- * <p>The main entry point of the application is the {@link #run(IItemRepository, IConvertFunction)} method,
- * which prompts the user for input, performs the conversion using the provided repository and conversion function,
- * and displays the result to the user. The application continues to run as long as the user chooses to continue
- * converting values.
+ * <p>
+ * The main entry point of the application is the
+ * {@link #run(IItemRepository, IConvertFunction)} method, which prompts the
+ * user for input, performs the conversion using the provided repository and
+ * conversion function, and displays the result to the user. The application
+ * continues to run as long as the user chooses to continue converting values.
  *
- * <p>Usage:
- * To use this converter application, create an instance of the {@code ConverterApp} class and invoke
- * the {@link #run(IItemRepository, IConvertFunction)} method, passing in an implementation of the
- * {@link IItemRepository} interface and an implementation of the {@link IConvertFunction} interface.
+ * <p>
+ * Usage: To use this converter application, create an instance of the
+ * {@code ConverterApp} class and invoke the
+ * {@link #run(IItemRepository, IConvertFunction)} method, passing in an
+ * implementation of the {@link IItemRepository} interface and an implementation
+ * of the {@link IConvertFunction} interface.
  *
- * <p>Example usage:
- * Suppose you have an implementation of the {@code CurrencyRepository} class that provides currency conversion rates,
- * and an implementation of the {@code CurrencyConverter} class that performs the currency conversion.
- * You can use the converter application as follows:
+ * <p>
+ * Example usage: Suppose you have an implementation of the
+ * {@code CurrencyRepository} class that provides currency conversion rates, and
+ * an implementation of the {@code CurrencyConverter} class that performs the
+ * currency conversion. You can use the converter application as follows:
  *
  * <pre>{@code
  * IItemRepository repository = new CurrencyRepository();
@@ -47,25 +52,24 @@ import presentation.value_to_convert.view.InputValueScreen;
  */
 public class ConverterApp implements IConverterApp {
 
-    /**
-     * Runs the converter application using the provided item repository and conversion function.
-     * The application prompts the user for input, performs the conversion, and displays the result.
-     * The application continues to run as long as the user chooses to continue converting values.
-     *
-     * @param repository  the item repository providing the conversion rates or data
-     * @param function    the conversion function to perform the conversion
-     */
-	
+	/**
+	 * Runs the converter application using the provided item repository and
+	 * conversion function. The application prompts the user for input, performs the
+	 * conversion, and displays the result. The application continues to run as long
+	 * as the user chooses to continue converting values.
+	 *
+	 * @param repository the item repository providing the conversion rates or data
+	 * @param function   the conversion function to perform the conversion
+	 */
+
 	@Override
-	public void run(IItemRepository repository, IConvertFunction function) { 
-		Optional<Double> valueToConvert; 
+	public void run(IItemRepository repository, IConvertFunction function) {
+		Optional<Double> valueToConvert;
 		boolean keepConverting = Boolean.TRUE;
-		while(keepConverting) {
+		while (keepConverting) {
 			List<String> selectedVals = getSelectedValues(repository);
 			valueToConvert = getValueToConvert();
-			valueToConvert.ifPresent(val -> 
-				showValue(convertFunction(selectedVals, val.doubleValue(), function))
-			);
+			valueToConvert.ifPresent(val -> showValue(convertFunction(selectedVals, val.doubleValue(), function)));
 			keepConverting = showContinueConversion();
 		}
 		showProgramEnded();
@@ -79,8 +83,9 @@ public class ConverterApp implements IConverterApp {
 	private Optional<Double> getValueToConvert() {
 		InputValueScreen view = new InputValueScreen();
 		String value = view.showNumberInputDialog();
-		
-		if (StringUtils.isEmpty(value)) return Optional.empty();
+
+		if (StringUtils.isEmpty(value))
+			return Optional.empty();
 		return Optional.of(Double.parseDouble(value));
 	}
 
@@ -89,8 +94,7 @@ public class ConverterApp implements IConverterApp {
 	}
 
 	private double convertFunction(List<String> selectedValues, double inputValue, IConvertFunction function) {
-		return	function.convertValue(selectedValues.get(0), 
-        		selectedValues.get(1), inputValue);
+		return function.convertValue(selectedValues.get(0), selectedValues.get(1), inputValue);
 	}
 
 	private boolean showContinueConversion() {

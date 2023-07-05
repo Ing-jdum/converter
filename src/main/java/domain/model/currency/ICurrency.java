@@ -3,16 +3,18 @@ package domain.model.currency;
 /**
  * Interface for a currency.
  *
- * <p>Represents a currency and provides methods to retrieve exchange value.
+ * <p>
+ * Represents a currency and provides methods to retrieve exchange value.
  *
- * @apiNote Implementing classes should provide concrete implementations of the methods defined in this interface.
+ * @apiNote Implementing classes should provide concrete implementations of the
+ *          methods defined in this interface.
  */
 public interface ICurrency {
 
-    /**
-     * Retrieves the exchange value of the currency.
-     *
-     * @return the exchange value of the currency as a {@code double}.
-     */
-    double exchangeValue();
+	/**
+	 * Retrieves the exchange value of the currency.
+	 *
+	 * @return the exchange value of the currency as a {@code double}.
+	 */
+	double exchangeValue();
 }
