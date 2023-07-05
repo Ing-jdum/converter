@@ -11,14 +11,26 @@ import javax.swing.JPanel;
 import domain.model.IExchangeableItem;
 import domain.repository.IItemRepository;
 
+/**
+ * The SelectionScreen class provides methods for displaying a selection dialog.
+ */
 public class SelectionScreen {
-
 	private IItemRepository repository;
 
+	/**
+	 * Constructs a SelectionScreen object with the specified item repository.
+	 *
+	 * @param repository the item repository to be used
+	 */
 	public SelectionScreen(IItemRepository repository) {
 		this.repository = repository;
 	}
 
+	/**
+	 * Displays a selection dialog to choose items from the repository.
+	 *
+	 * @return a list of selected item descriptions
+	 */
 	public List<String> showSelectionDialog() {
 		List<String> selectedValues = new ArrayList<>();
 		List<IExchangeableItem> items = repository.getAllItems();
@@ -41,7 +53,7 @@ public class SelectionScreen {
 		panel.add(toLabel);
 		panel.add(targetItemComboBox);
 
-		// Show the JOptionPane with the double selection box
+		// Show the JOptionPane with the selection dialog
 		int result = JOptionPane.showOptionDialog(null, panel, repository.getTitle(), JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, null, null);
 
@@ -49,7 +61,6 @@ public class SelectionScreen {
 		if (result == JOptionPane.OK_OPTION) {
 			selectedValues.add((String) sourceItemComboBox.getSelectedItem());
 			selectedValues.add((String) targetItemComboBox.getSelectedItem());
-
 		}
 
 		return selectedValues;
