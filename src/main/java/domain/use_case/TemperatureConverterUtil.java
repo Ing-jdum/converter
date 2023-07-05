@@ -5,10 +5,36 @@ import java.util.Optional;
 import data.repository.temperature.ETemperatureUnits;
 import data.repository.temperature.TemperatureUnitRepositoryImpl;
 
+/**
+ * Utility class for converting temperatures between different units of measurement.
+ * This class provides methods to convert temperatures from one unit to another, such as Celsius, Fahrenheit, and Kelvin.
+ * The conversions are based on mathematical formulas and use the Kelvin unit as an intermediate step.
+ * 
+ * <p>Usage:
+ * To convert a temperature from a source unit to a target unit, use the {@code convertTemperature} method.
+ * Pass the source and target temperature units as strings (e.g., "Celsius", "Fahrenheit") and the value to be converted.
+ * The method will return the converted value.
+ * 
+ * <p>Note: The temperature conversion is performed based on the formulas derived from scientific calculations.
+ * There might be slight variations due to rounding errors or differences in precision.
+ * 
+ * @see ETemperatureUnits
+ * @see TemperatureUnitRepositoryImpl
+ * @throws IllegalArgumentException if the conversion is not supported
+ */
+
 public class TemperatureConverterUtil {
 	
 	private TemperatureConverterUtil() {}
 	
+	/**
+     * Converts the temperature from the source temperature unit to the target temperature unit.
+     *
+     * @param sourceTemperature the source temperature unit.
+     * @param targetTemperature the target temperature unit.
+     * @param value             the value to be converted.
+     * @return the converted value.
+     */
 	public static double convertTemperature(String sourceTemperature, String targetTemperature, double value) {
 		Optional<ETemperatureUnits> sourceItem = 
         		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(sourceTemperature);
@@ -24,7 +50,7 @@ public class TemperatureConverterUtil {
         return result;
 	}
 	
-	public static double convertTemperatureToKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
+	private static double convertTemperatureToKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
 		double result = 0.0;
 		switch(sourceTemperature){
 	        case CELSIUS:
@@ -37,12 +63,12 @@ public class TemperatureConverterUtil {
 	        	result = value;
 	            break;
 	        default:
-	            break;
+	        	throw new IllegalArgumentException("Unsupported conversion: ");
 	    }
 		return result;
 	}
 	
-	public static double convertTemperatureFromKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
+	private static double convertTemperatureFromKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
 		double result = value;
 		switch(targetTemperature){
 	        case CELSIUS:
@@ -54,33 +80,33 @@ public class TemperatureConverterUtil {
 	        case KELVIN:
 	            break;
 	        default:
-	            break;
+	        	throw new IllegalArgumentException("Unsupported conversion: ");
 		}
 		return result;
 	}
 	
-	public static double celsiusToFahrenheit(double celsius) {
+	private static double celsiusToFahrenheit(double celsius) {
         return (celsius * 9 / 5) + 32;
     }
     
-    public static double fahrenheitToCelsius(double fahrenheit) {
+	private static double fahrenheitToCelsius(double fahrenheit) {
         return (fahrenheit - 32) * 5 / 9;
     }
     
-    public static double celsiusToKelvin(double celsius) {
+    private static double celsiusToKelvin(double celsius) {
         return celsius + 273.15;
     }
     
-    public static double kelvinToCelsius(double kelvin) {
+    private static double kelvinToCelsius(double kelvin) {
         return kelvin - 273.15;
     }
     
-    public static double fahrenheitToKelvin(double fahrenheit) {
+    private static double fahrenheitToKelvin(double fahrenheit) {
         double celsius = fahrenheitToCelsius(fahrenheit);
         return celsiusToKelvin(celsius);
     }
     
-    public static double kelvinToFahrenheit(double kelvin) {
+    private static double kelvinToFahrenheit(double kelvin) {
         double celsius = kelvinToCelsius(kelvin);
         return celsiusToFahrenheit(celsius);
     }

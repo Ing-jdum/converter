@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import domain.model.IExchangableItem;
+import domain.model.IExchangeableItem;
 import domain.repository.IItemRepository;
 
 
@@ -22,12 +22,12 @@ public class SelectionScreen {
 	}
 
 	public List<String> showSelectionDialog(){
-		List<IExchangableItem> items = repository.getAllItems();
+		List<IExchangeableItem> items = repository.getAllItems();
         List<String> selectedValues = new ArrayList<>();
 		JComboBox<String> sourceItemComboBox = new JComboBox<>();
 		JComboBox<String> targetItemComboBox = new JComboBox<>();
         
-		for (IExchangableItem item : items) {
+		for (IExchangeableItem item : items) {
 			sourceItemComboBox.addItem(item.description());
 			targetItemComboBox.addItem(item.description());
 		}

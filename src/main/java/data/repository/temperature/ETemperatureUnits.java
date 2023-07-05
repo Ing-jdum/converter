@@ -1,8 +1,15 @@
 package data.repository.temperature;
 
-import domain.model.IExchangableItem;
+import domain.model.IExchangeableItem;
 
-public enum ETemperatureUnits implements IExchangableItem {
+/**
+ * Enumeration of temperature units.
+ * Each unit has a description and a symbol.
+ * This enum implements the {@link IExchangeableItem} interface
+ * and provides methods to retrieve the description and symbol of each unit.
+ */
+
+public enum ETemperatureUnits implements IExchangeableItem {
     CELSIUS("Celsius", "C"),
     FAHRENHEIT("Fahrenheit", "F"),
     KELVIN("Kelvin", "K");
