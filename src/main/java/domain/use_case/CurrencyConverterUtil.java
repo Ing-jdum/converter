@@ -25,11 +25,8 @@ public class CurrencyConverterUtil {
      * @return the converted amount of currency.
      */
     public static double convertCurrency(Currency sourceCurrency, Currency targetCurrency, double amount) {
-        double sourceRate = sourceCurrency.exchangeValue();
-        double targetRate = targetCurrency.exchangeValue();
-
         // Perform the currency conversion calculation
-        return (amount / sourceRate) * targetRate;
+        return (amount / sourceCurrency.exchangeValue()) * targetCurrency.exchangeValue();
     }
 
     /**
@@ -41,17 +38,9 @@ public class CurrencyConverterUtil {
      * @return the converted amount of currency.
      */
     public static double convertCurrency(String sourceCurrency, String targetCurrency, double amount) {
-        Optional<Currency> sourceItem = CurrencyRepositoryImpl.INSTANCE.getItemByName(sourceCurrency);
-        Optional<Currency> targetItem = CurrencyRepositoryImpl.INSTANCE.getItemByName(targetCurrency);
-        double result = 0;
-
-        // Perform the currency conversion calculation
-        if (sourceItem.isPresent() && targetItem.isPresent()) {
-            Currency sourceCurr = sourceItem.get();
-            Currency targetCurr = targetItem.get();
-            result = convertCurrency(sourceCurr, targetCurr, amount);
-        }
-
-        return result;
+        return CurrencyRepositoryImpl.INSTANCE.getItemByName(sourceCurrency)
+        	    .flatMap(sourceItem -> CurrencyRepositoryImpl.INSTANCE.getItemByName(targetCurrency)
+        	        .map(targetItem -> convertCurrency(sourceItem, targetItem, amount)))
+        	    .orElse(0.0);
     }
 }

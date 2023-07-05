@@ -36,52 +36,34 @@ public class TemperatureConverterUtil {
      * @return the converted value.
      */
 	public static double convertTemperature(String sourceTemperature, String targetTemperature, double value) {
-		Optional<ETemperatureUnits> sourceItem = 
-        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(sourceTemperature);
-        Optional<ETemperatureUnits> targetItem = 
-        		TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(targetTemperature);
-        double result = 0;
-        if(sourceItem.isPresent() && targetItem.isPresent()) {
-        	ETemperatureUnits sourceTemp = sourceItem.get();
-        	ETemperatureUnits targetTemp = targetItem.get();
-            double kelvinValue = convertTemperatureToKelvin(sourceTemp, targetTemp, value);
-            result = convertTemperatureFromKelvin(sourceTemp, targetTemp, kelvinValue);
-        }
-        return result;
+		return TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(sourceTemperature)
+		        .flatMap(sourceItem -> TemperatureUnitRepositoryImpl.INSTANCE.getTemperatureUnitByDescription(targetTemperature)
+		                .map(targetItem -> {
+		                    double kelvinValue = convertTemperatureToKelvin(sourceItem, targetItem, value);
+		                    return convertTemperatureFromKelvin(sourceItem, targetItem, kelvinValue);
+		                }))
+		        .orElse(0.0);
 	}
 	
 	private static double convertTemperatureToKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
-		double result = 0.0;
-		switch(sourceTemperature){
-	        case CELSIUS:
-	        	result = celsiusToKelvin(value);
-	            break;
-	        case FAHRENHEIT:
-	        	result = fahrenheitToKelvin(value);
-	            break;
-	        case KELVIN:
-	        	result = value;
-	            break;
-	        default:
-	        	throw new IllegalArgumentException("Unsupported conversion: ");
-	    }
+		double result;
+		result = switch (sourceTemperature) {
+		    case CELSIUS -> celsiusToKelvin(value);
+		    case FAHRENHEIT -> fahrenheitToKelvin(value);
+		    case KELVIN -> value;
+		    default -> throw new IllegalArgumentException("Unsupported conversion: " + sourceTemperature);
+		};
 		return result;
 	}
 	
 	private static double convertTemperatureFromKelvin(ETemperatureUnits sourceTemperature, ETemperatureUnits targetTemperature, double value) {
 		double result = value;
-		switch(targetTemperature){
-	        case CELSIUS:
-	            result = kelvinToCelsius(result);
-	            break;
-	        case FAHRENHEIT:
-	        	result = kelvinToFahrenheit(result);
-	            break;
-	        case KELVIN:
-	            break;
-	        default:
-	        	throw new IllegalArgumentException("Unsupported conversion: ");
-		}
+		result = switch (targetTemperature) {
+		    case CELSIUS -> kelvinToCelsius(result);
+		    case FAHRENHEIT -> kelvinToFahrenheit(result);
+		    case KELVIN -> result;
+		    default -> throw new IllegalArgumentException("Unsupported conversion: " + targetTemperature);
+		};
 		return result;
 	}
 	
