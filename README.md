@@ -24,10 +24,10 @@ Build the project to resolve dependencies.
 Run the application and start converting currencies and temperatures.
 
 ## Technologies Used
-Java: The programming language used for the application logic.
-JavaFX: The user interface framework for building the graphical user interface.
-JUnit Jupiter: The testing framework for writing unit tests.
-maven: The build automation tool used for dependency management and building the project.
+- Java: The programming language used for the application logic.
+- JavaFX: The user interface framework for building the graphical user interface.
+- JUnit Jupiter: The testing framework for writing unit tests.
+- maven: The build automation tool used for dependency management and building the project.
 
 ## Contributing
 Contributions to Converter-app are welcome! If you find any bugs, have feature requests, 
