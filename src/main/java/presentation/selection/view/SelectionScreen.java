@@ -27,10 +27,12 @@ public class SelectionScreen {
 		JComboBox<String> sourceItemComboBox = new JComboBox<>();
 		JComboBox<String> targetItemComboBox = new JComboBox<>();
         
-		for (IExchangeableItem item : items) {
-			sourceItemComboBox.addItem(item.description());
-			targetItemComboBox.addItem(item.description());
-		}
+		items.stream()
+	        .map(IExchangeableItem::description)
+	        .forEach(description -> {
+	            sourceItemComboBox.addItem(description);
+	            targetItemComboBox.addItem(description);
+	        });
 		
 		// Create labels for the dropdown menus
         JLabel fromLabel = new JLabel("From:");
