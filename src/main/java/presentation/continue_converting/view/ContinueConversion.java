@@ -6,7 +6,7 @@ public class ContinueConversion {
 	
 	private ContinueConversion() {}
 	
-	public static boolean ShowContinueConversion() {
+	public static boolean showContinueConversion() {
 		int choice = JOptionPane.showOptionDialog(
 		         null,
 		         "Do you want to continue converting?",
